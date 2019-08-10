@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+  <div class="d-flex justify-content-center my-3">
+    <p class="h2">Welcome, <b>{{name}}</b></p>
+  </div>
+
+  <div class = "d-flex justify-content-center align-items-center mb-3">
+    <form style = "max-width: 500px;" class="text-center border border-dark p-5 mr-5 ml-5" method = 'POST' action = '{{url_for("main.profile")}}'>
+      <p class="h2 mb-4">Create or Join Room</p>
+      <!-- Flash Message -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-secondary" role="alert">
+            {{messages[0]}}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <!-- Create Room -->
+      <select name="room_dashboard_option" class="mb-1 form-control">
+        {% for room in rooms %}
+        <option value="{{room}}">Room {{room}} Dashboard</option>
+        {% endfor %}
+        <option value="0">Create New</option>
+      </select>
+      <button name="create_room" class="mb-4 btn btn-dark btn-block" type="submit">Open Dashboard</button>
+      <!-- Join Room -->
+      <input name="room_id" type="text" name="Room code..." class="mb-1 form-control" placeholder="Enter Room Code..." value="">
+      <!-- Join Room Button -->
+      <button name="join_room" class="mb-4 btn btn-dark btn-block" type="submit">Join Room</button>
+    </form>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <a class="btn btn-success" href="{{url_for('spotify.auth_spotify')}}" role="button">Connect with Spotify</a>
+  </div>
+
+</div>
+{% endblock %}
+<!-- <h1>Profile Page</h1>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <h4>{{messages[0]}}</h4>
+  {% endif %}
+{% endwith %}
+Welcome, {{ name }}
+<form class="" action="{{url_for('main.profile')}}" method="post">
+  <input type="submit" name="create_room" value="Create Room">
+  <input type="text" placeholder="Room code..." name="room_id" value="">
+  <input type="submit" name="join_room" value="Join Room">
+</form>
+<a href = "{{url_for('spotify.auth_spotify')}}">Connect with Spotify</a> -->

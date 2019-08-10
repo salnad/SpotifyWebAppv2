@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "container">
+  <div class = "d-flex justify-content-center align-items-center my-5">
+    <form style = "max-width: 500px;" class="text-center border border-dark p-5 mr-5 ml-5" method = 'POST' action = '{{url_for("auth.login")}}'>
+      <p class="h4 mb-2">Welcome to Spotify Project</p>
+      <p class="h2 mb-4">Please Log In</p>
+      <!-- Flash Message -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-secondary" role="alert">
+            {{messages[0]}}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <!-- Username -->
+      <input type="text" name="username" class="form-control mb-4" placeholder="Enter username...">
+      <!-- Email -->
+      <input type="password" name="password" class="form-control mb-4" placeholder="Enter password..." value="">
+      <!-- Sign in button -->
+      <button class="btn btn-dark btn-block" type="submit">Log In</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+<!-- <form method = 'POST' action = '{{url_for("auth.login")}}'>
+  <input type="text" name="username" placeholder="Enter username..." value="">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <h4>{{messages[0]}}</h4>
+    {% endif %}
+  {% endwith %}
+  <input type="checkbox" name="remember" value="Remember Me">
+  <input type="submit" name="" value="Log In">
+</form> -->

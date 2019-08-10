@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<meta http-equiv="refresh" content="3" >
+<h1>YOU ARE THE OWNER of ROOM {{room_id}}</h1>
+<h2>You're Current Device: {{device_name}}</h2>
+<!-- <h2>Current Song Playing</h2>
+<h3></h3> -->
+<h2>Next Song to Play</h2>
+{% if queue|length > 0 %}
+<h3>{{queue[0].track_title}} by {{queue[0].artists}}</h3>
+{% else %}
+<h3>No song in queue</h3>
+{% endif %}
+{% endblock %}
